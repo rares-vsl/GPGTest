@@ -14,6 +14,16 @@ gitHooks {
             """
         }
     }
+    hook("post-commit") {
+        from("#!/bin/sh") {
+            """
+            if ! git log -1 --pretty="%G?" HEAD | grep -q "G"; then
+                echo "Commit is not GPG-signed. Please use 'git commit -S'."
+                exit 1
+            fi
+            """
+        }
+    }
     createHooks()
 }
 
