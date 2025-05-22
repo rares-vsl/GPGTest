@@ -5,12 +5,11 @@ plugins {
 gitHooks {
     commitMsg { conventionalCommits() }
     hook("pre-commit") {
-        from {
+        from("#!/bin/sh") {
             """
-            #!/bin/bash
-            if ! git log -1 --pretty=%G? | grep -q "G"; then
-              echo "Commit is not GPG-signed. Aborting."
-              exit 1
+            if git log --pretty="%G?" origin/HEAD..HEAD | grep -qv "G"; then
+                echo "Push rejected: All commits must be signed."
+                exit 1
             fi
             """
         }
