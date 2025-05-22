@@ -3,7 +3,18 @@ plugins {
 }
 
 gitHooks {
-    commitMsg { conventionalCommits() } // Applies the default conventional commits configuration
+    commitMsg { conventionalCommits() }
+    hook("pre-commit") {
+        from {
+            """
+            #!/bin/bash
+            if ! git log -1 --pretty=%G? | grep -q "G"; then
+              echo "Commit is not GPG-signed. Aborting."
+              exit 1
+            fi
+            """
+        }
+    }
     createHooks()
 }
 
