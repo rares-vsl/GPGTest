@@ -1,2 +1,2 @@
 # GPGTest
-test
+test dei commit
