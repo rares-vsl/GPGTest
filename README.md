@@ -1,3 +1,3 @@
 # GPGTest
 test dei commit 
-not signed a
+not signed a a

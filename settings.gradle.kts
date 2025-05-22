@@ -4,16 +4,6 @@ plugins {
 
 gitHooks {
     commitMsg { conventionalCommits() }
-    hook("pre-commit") {
-        from("#!/bin/sh") {
-            """
-            if git log --pretty="%G?" origin/HEAD..HEAD | grep -qv "G"; then
-                echo "Push rejected: All commits must be signed."
-                exit 1
-            fi
-            """
-        }
-    }
     hook("post-commit") {
         from("#!/bin/sh") {
             """
