@@ -1,0 +1,10 @@
+[versions]
+spotless = "6.23.0"
+gitSemVer = "5.1.3"
+[libraries]
+
+[bundles]
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+gitSemVer = { id = "org.danilopianini.git-sensitive-semantic-versioning", version.ref = "gitSemVer" }

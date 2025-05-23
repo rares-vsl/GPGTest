@@ -1,20 +1,16 @@
 plugins {
     id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.24"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
 }
 
 gitHooks {
-    commitMsg { conventionalCommits() }
-    hook("post-commit") {
-        from("#!/bin/sh") {
-            """
-            if ! git log -1 --pretty="%G?" HEAD | grep -q "G"; then
-                echo "Commit is not GPG-signed. Please use 'git commit -S'."
-                exit 1
-            fi
-            """
-        }
+    commitMsg {
+        conventionalCommits()
     }
-    createHooks()
+    hook("pre-commit") {
+        tasks("checkstyleMain")
+    }
+    createHooks(true)
 }
 
 rootProject.name = "GPGTest"
