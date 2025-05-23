@@ -65,6 +65,12 @@ tasks.withType<Checkstyle>().configureEach {
     }
 }
 
+tasks.register("printVersion") {
+    doLast {
+        println("Current version: $version")
+    }
+}
+
 tasks.test {
     useJUnitPlatform()
 }
