@@ -36,6 +36,7 @@ checkstyle {
 
 gitSemVer {
     commitNameBasedUpdateStrategy(ConventionalCommit::semanticVersionUpdate)
+    assignGitSemanticVersion()
 }
 
 tasks.withType<Checkstyle>().configureEach {
